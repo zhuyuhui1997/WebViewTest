@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
       /*  setContentView(R.layout.activity_main);
         Uri uri=Uri.parse("http://www.baidu.com");
         Intent intent =new Intent(Intent.ACTION_VIEW,uri);
-        startActivity(intent);　　调用系统默认浏览器打开网站或网页*/
+        startActivity(intent);　　*/
 
 
 
@@ -47,9 +47,10 @@ public class MainActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient()
         {
             public  boolean shouldOverrideUrlLoading(WebView webView,String url){
-                webView.loadUrl(url);
-                return  true;
+
+                return  false;
             }
+
 
         });
 
