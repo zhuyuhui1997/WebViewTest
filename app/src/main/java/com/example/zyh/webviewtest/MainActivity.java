@@ -15,6 +15,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public  static  String url1="http://www.baidu.com";
@@ -62,9 +63,18 @@ public class MainActivity extends AppCompatActivity {
 
         webView.loadUrl("file:///android_asset/demo.html");
 
-
+        /*
+         *使用这个方法，待会好使用js中的方法，不过前面要开启js
+         *webview注射java对象JsObject
+         *并并产生一个String 类型的字符串lala　　可以随意起名字待会有用
+         */
         webView. addJavascriptInterface(new JsObject(),"lala");
-                button.setOnClickListener(new View.OnClickListener() {
+
+        /*
+         *butto 注册监听事件
+         *调用webView.loadUrl，调用javascript中的方法fillcontent()
+         */
+        button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         webView.loadUrl("javascript:fillContent()");
@@ -95,13 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
     public  class  JsObject {
         @JavascriptInterface
-        public void startMap() {
-            Intent mIntent = new Intent();
-            ComponentName component = new ComponentName("com.google.android.apps.maps",
-                    "com.google.android.maps.MapsActivity");
-            mIntent.setComponent(component);
-
-            startActivity(mIntent);
+        public void Toast() {
+            Toast.makeText(MainActivity.this, "这是js调用java方法的体现，这是一个toast", Toast.LENGTH_SHORT).show();
         }
     }
 }
