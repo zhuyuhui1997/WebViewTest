@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-             webView.loadUrl(url3);
+             webView.loadUrl(url1);
 
 
     }
